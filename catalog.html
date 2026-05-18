@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudentHelper — Каталог</title>
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+
+  <header class="sh-header">
+    <div class="container">
+      <div class="sh-header__inner">
+        <a href="catalog.html" class="sh-logo">
+          <div class="sh-logo__icon">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+          </div>
+          StudentHelper
+        </a>
+        <div class="sh-header__right">
+          <span class="sh-header__user" id="header-user"></span>
+          <button class="btn btn--outline" id="logout-btn">Выход</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="sh-filters">
+    <div class="container">
+      <div class="sh-filters__inner">
+        <div class="sh-filters__btns" id="filter-btns">
+          <button class="filter-btn filter-btn--active" data-filter="all">Все</button>
+          <button class="filter-btn" data-filter="1">1 курс</button>
+          <button class="filter-btn" data-filter="2">2 курс</button>
+          <button class="filter-btn" data-filter="3">3 курс</button>
+          <button class="filter-btn" data-filter="4">4 курс</button>
+          <button class="filter-btn" data-filter="5">5 курс</button>
+          <button class="filter-btn" data-filter="grad">Выпускники</button>
+        </div>
+        <div class="sh-search">
+          <input class="form-input sh-search__input" id="search-input"
+                 type="search" placeholder="Имя или предмет..." autocomplete="off" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="sh-main">
+    <div class="container">
+      <div class="sh-catalog-head">
+        <h1 class="section-title">Студенты-помощники</h1>
+        <span class="sh-count" id="students-count"></span>
+      </div>
+      <div class="student-grid" id="student-grid"></div>
+      <div class="sh-empty" id="sh-empty" hidden>
+        <div class="sh-empty__icon">🎓</div>
+        <p>Студенты не найдены. Попробуйте изменить фильтр или поисковый запрос.</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

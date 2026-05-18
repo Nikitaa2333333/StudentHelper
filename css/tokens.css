@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&family=Roboto+Mono:wght@500;700&display=swap');
+
+:root {
+  /* ── Цвета ── */
+  --canvas:         #fcfcfc;
+  --sky-wash:       #f0f4fe;
+  --midnight:       #020520;
+  --graphite:       #14141e;
+  --slate:          #374151;
+  --ash:            #696a72;
+  --fog:            #95959b;
+  --steel:          #6b7280;
+  --signal-blue:    #145aff;
+  --action-dark:    #0f1f3d;
+  --border:         #e5e7eb;
+  --white:          #ffffff;
+
+  /* Semantic accents — только для статус-бейджей */
+  --emerald:        #16ca2e;
+  --coral:          #f26052;
+  --azure:          #0099ff;
+  --amber:          #ffa64d;
+
+  /* Градиенты */
+  --gradient-blue:  linear-gradient(rgb(59,130,246) 0%, rgb(20,90,255) 100%);
+
+  /* ── Шрифты ── */
+  --font-body:      'Inter', system-ui, sans-serif;
+  --font-mono:      'Roboto Mono', ui-monospace, monospace;
+
+  /* ── Типографика ── */
+  --text-caption:       10px;
+  --text-body:          14px;
+  --text-subheading:    18px;
+  --text-heading:       22px;
+  --text-heading-lg:    40px;
+  --text-display:       56px;
+
+  --leading-caption:    1.2;
+  --leading-body:       1.43;
+  --leading-subheading: 1.4;
+  --leading-heading:    1.25;
+  --leading-heading-lg: 1.08;
+  --leading-display:    1.05;
+
+  --tracking-caption:     0.13px;
+  --tracking-body:        0.06px;
+  --tracking-subheading: -0.16px;
+  --tracking-heading:    -0.22px;
+  --tracking-heading-lg: -0.76px;
+  --tracking-display:    -1.51px;
+
+  /* ── Отступы ── */
+  --space-4:   4px;
+  --space-8:   8px;
+  --space-12:  12px;
+  --space-16:  16px;
+  --space-20:  20px;
+  --space-24:  24px;
+  --space-32:  32px;
+  --space-40:  40px;
+  --space-48:  48px;
+  --space-56:  56px;
+  --space-72:  72px;
+  --space-80:  80px;
+  --space-104: 104px;
+  --space-120: 120px;
+
+  /* ── Скругления ── */
+  --radius-badge:   4px;
+  --radius-card:    8px;
+  --radius-btn:     12px;
+  --radius-input:   12px;
+  --radius-img:     16px;
+  --radius-modal:   32px;
+  --radius-card-lg: 40px;
+  --radius-pill:    100px;
+
+  /* ── Тени ── */
+  --shadow-card:    0 1px 4px rgba(20,90,255,.06), 0 2px 12px rgba(20,90,255,.05);
+  --shadow-elevated:0 4px 16px rgba(20,90,255,.10), 0 1px 4px rgba(20,90,255,.07);
+  --shadow-feature: 0 2px 8px  rgba(20,90,255,.06),
+                    0 8px 32px rgba(20,90,255,.08),
+                    0 1px 2px  rgba(20,90,255,.04);
+  --shadow-blue:    0 0px 40px rgba(20,90,255,.12), 0 1px 4px rgba(20,90,255,.08);
+  --shadow-modal:   0 24px 64px rgba(20,90,255,.14), 0 2px 8px rgba(20,90,255,.08);
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudentHelper — Профиль</title>
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+
+  <header class="sh-header">
+    <div class="container">
+      <div class="sh-header__inner">
+        <div class="sh-header__left">
+          <button class="btn btn--outline sh-back-btn" id="back-btn">← Назад</button>
+          <a href="catalog.html" class="sh-logo">
+            <div class="sh-logo__icon">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+            </div>
+            StudentHelper
+          </a>
+        </div>
+        <button class="btn btn--outline" id="logout-btn">Выход</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="sh-main">
+    <div class="container">
+      <div class="profile-wrap" id="profile-wrap"></div>
+      <div class="sh-empty" id="not-found" hidden>
+        <div class="sh-empty__icon">❓</div>
+        <p>Студент не найден.</p>
+        <a href="catalog.html" class="btn btn--primary" style="margin-top:20px">
+          Вернуться в каталог
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

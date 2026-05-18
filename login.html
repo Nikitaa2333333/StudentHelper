@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudentHelper — Вход</title>
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body class="login-body">
+
+  <div class="login-bg">
+    <div class="login-bg__glow"></div>
+    <div class="login-bg__grid"></div>
+  </div>
+
+  <div class="login-wrap">
+    <div class="login-card">
+
+      <div class="login-brand">
+        <div class="login-brand__icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
+        </div>
+        <div>
+          <span class="login-brand__name">StudentHelper</span>
+          <span class="login-brand__sub">Платформа помощи студентам</span>
+        </div>
+      </div>
+
+      <h1 class="login-title">Войти в систему</h1>
+
+      <form id="login-form" novalidate>
+
+        <div class="form-group">
+          <label class="form-label" for="f-phone">Номер телефона</label>
+          <input class="form-input" id="f-phone" type="tel"
+                 placeholder="+7 (999) 000-00-00" autocomplete="tel" />
+          <span class="form-hint">Начните с +7 или 8</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="f-faculty">Факультет / Группа</label>
+          <div class="autocomplete-wrap">
+            <input class="form-input" id="f-faculty" type="text"
+                   placeholder="Например: ПМ-21-01" autocomplete="off" />
+            <ul class="autocomplete-list" id="faculty-list" hidden></ul>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Курс обучения</label>
+          <div class="course-picker" id="course-picker">
+            <button type="button" class="course-btn" data-v="1">1 курс</button>
+            <button type="button" class="course-btn" data-v="2">2 курс</button>
+            <button type="button" class="course-btn" data-v="3">3 курс</button>
+            <button type="button" class="course-btn" data-v="4">4 курс</button>
+            <button type="button" class="course-btn" data-v="5">5 курс</button>
+          </div>
+          <input type="hidden" id="f-course" />
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--full login-submit"
+                id="login-btn" disabled>
+          Войти →
+        </button>
+
+      </form>
+
+      <p class="login-back">
+        <a href="index.html">← Вернуться на главную</a>
+      </p>
+
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
