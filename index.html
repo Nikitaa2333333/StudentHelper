@@ -55,33 +55,38 @@
           <a href="#how" class="btn btn--ghost btn--lg">Как это работает</a>
         </div>
 
-        <div class="land-hero__image" style="margin-top: 40px;">
-          <img src="student_memoji-fotor-bg-remover-20260518125216.png" alt="Студент-помощник" style="max-width: 100%; width: 550px; height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 20px 40px rgba(20, 90, 255, 0.25)); animation: float 6s ease-in-out infinite;">
-        </div>
-        
-        <style>
-          @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-          }
-        </style>
+        <div class="hero-visual">
+          <!-- Floating stat cards -->
+          <div class="hero-float-card hero-float-card--left-top">
+            <span class="hero-float-card__icon">👥</span>
+            <div>
+              <div class="hero-float-card__num">20+</div>
+              <div class="hero-float-card__label">Студентов-помощников</div>
+            </div>
+          </div>
 
-        <div class="land-hero__stats">
-          <div class="land-stat">
-            <span class="land-stat__num">20+</span>
-            <span class="land-stat__label">Студентов-помощников</span>
+          <div class="hero-float-card hero-float-card--right-top">
+            <span class="hero-float-card__icon">📚</span>
+            <div>
+              <div class="hero-float-card__num">40+</div>
+              <div class="hero-float-card__label">Дисциплин</div>
+            </div>
           </div>
-          <div class="land-stat__sep"></div>
-          <div class="land-stat">
-            <span class="land-stat__num">40+</span>
-            <span class="land-stat__label">Дисциплин</span>
+
+          <div class="hero-float-card hero-float-card--left-bottom">
+            <span class="hero-float-card__icon">🎓</span>
+            <div>
+              <div class="hero-float-card__num">6</div>
+              <div class="hero-float-card__label">Курсов и направлений</div>
+            </div>
           </div>
-          <div class="land-stat__sep"></div>
-          <div class="land-stat">
-            <span class="land-stat__num">6</span>
-            <span class="land-stat__label">Курсов и направлений</span>
-          </div>
+
+          <!-- Student image -->
+          <img
+            class="hero-visual__img"
+            src="student_memoji-fotor-bg-remover-20260518125216.png"
+            alt="Студент-помощник"
+          >
         </div>
 
       </div>
@@ -192,7 +197,7 @@
             </svg>
           </div>
           <h3 class="land-feature-card__title">Любой предмет</h3>
-          <p class="land-feature-card__text">Математика, программирование, физика, экономика — найдём помощника по любой дисциплине.</p>
+          <p class="land-feature-card__text">Вышмат, ТОЭ, системы ЖАТ, экономика транспорта — найдём помощника по любой дисциплине.</p>
         </div>
 
         <div class="land-feature-card">

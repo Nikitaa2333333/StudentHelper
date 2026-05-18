@@ -14,9 +14,10 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-body);
+  font-family: 'Inter', system-ui, sans-serif;
   font-weight: 900;
   color: var(--graphite);
+  letter-spacing: -0.03em;
 }
 
 /* ── LAYOUT ── */
@@ -1539,6 +1540,131 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--border);
   flex-shrink: 0;
 }
+
+/* ── HERO VISUAL with floating cards ── */
+
+.hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 48px;
+  width: 100%;
+  /* extra horizontal room for the side cards */
+  max-width: 860px;
+  min-height: 560px;
+}
+
+.hero-visual__img {
+  position: relative;
+  z-index: 2;
+  width: 420px;
+  max-width: 55vw;
+  height: auto;
+  filter: drop-shadow(0 24px 48px rgba(20, 90, 255, 0.22));
+  animation: floatImg 6s ease-in-out infinite;
+}
+
+@keyframes floatImg {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-18px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Float cards shared */
+.hero-float-card {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 18px;
+  padding: 14px 20px;
+  box-shadow:
+    0 8px 32px rgba(20, 90, 255, 0.12),
+    0 2px 8px  rgba(20, 90, 255, 0.08),
+    0 1px 0   rgba(255,255,255,.9) inset;
+  white-space: nowrap;
+}
+
+.hero-float-card__icon {
+  font-size: 28px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.hero-float-card__num {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--midnight);
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.hero-float-card__label {
+  font-size: 11px;
+  color: var(--ash);
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  margin-top: 3px;
+}
+
+/* ── Left side: 2 cards stacked ── */
+.hero-float-card--left-top {
+  left: 0;
+  top: 100px;
+  animation: floatCard1 7s ease-in-out infinite;
+}
+
+.hero-float-card--left-bottom {
+  left: 0;
+  bottom: 90px;
+  animation: floatCard3 8.5s ease-in-out infinite 0.8s;
+}
+
+/* ── Right side: 1 card centred ── */
+.hero-float-card--right-top {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: floatCard2 8s ease-in-out infinite 0.4s;
+}
+
+@keyframes floatCard1 {
+  0%, 100% { transform: translateY(0px)   rotate(-1.5deg); }
+  50%       { transform: translateY(-14px) rotate(-0.5deg); }
+}
+
+@keyframes floatCard2 {
+  0%, 100% { transform: translateY(-50%)   rotate(1.5deg); }
+  50%       { transform: translateY(calc(-50% - 12px)) rotate(0.5deg); }
+}
+
+@keyframes floatCard3 {
+  0%, 100% { transform: translateY(0px)   rotate(-1deg); }
+  50%       { transform: translateY(-10px) rotate(0deg); }
+}
+
+@media (max-width: 800px) {
+  .hero-visual { max-width: 100%; min-height: 460px; }
+  .hero-visual__img { width: 280px; max-width: 60vw; }
+  .hero-float-card--left-top    { left: 0;  top: 60px; }
+  .hero-float-card--left-bottom { left: 0;  bottom: 50px; }
+  .hero-float-card--right-top   { right: 0; }
+}
+
+@media (max-width: 480px) {
+  .hero-visual__img { width: 200px; }
+  .hero-float-card { padding: 10px 14px; gap: 8px; border-radius: 14px; }
+  .hero-float-card__num   { font-size: 18px; }
+  .hero-float-card__icon  { font-size: 20px; }
+}
+
 
 /* ── SECTION LAYOUT ── */
 
