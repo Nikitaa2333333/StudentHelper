@@ -207,7 +207,7 @@ function plural(n, one, few, many) {
 }
 
 function logout() {
-  sessionStorage.removeItem('sh_user');
+  localStorage.removeItem('sh_user');
   sessionStorage.removeItem('sh_filter');
   window.location.href = 'login.html';
 }
@@ -333,7 +333,7 @@ function initLogin() {
 
   form.addEventListener('submit', e => {
     e.preventDefault();
-    sessionStorage.setItem('sh_user', phoneInput.value.trim());
+    localStorage.setItem('sh_user', phoneInput.value.trim());
     sessionStorage.removeItem('sh_filter');
     window.location.href = 'catalog.html';
   });
@@ -345,12 +345,17 @@ function initCatalog() {
   const grid = document.getElementById('student-grid');
   if (!grid) return;
 
-  const user = sessionStorage.getItem('sh_user');
-  if (!user) { window.location.href = 'login.html'; return; }
-
+  const user = localStorage.getItem('sh_user');
   const headerUser = document.getElementById('header-user');
-  if (headerUser) headerUser.textContent = user;
-  document.getElementById('logout-btn').addEventListener('click', logout);
+  const logoutBtn  = document.getElementById('logout-btn');
+
+  if (user) {
+    if (headerUser) headerUser.textContent = user;
+    if (logoutBtn)  logoutBtn.addEventListener('click', logout);
+  } else {
+    if (headerUser) headerUser.innerHTML = '<a href="login.html" style="color:var(--signal-blue);text-decoration:none;font-size:13px">Войти</a>';
+    if (logoutBtn)  logoutBtn.style.display = 'none';
+  }
 
   let activeFilter = sessionStorage.getItem('sh_filter') || 'all';
   let searchQuery  = '';
@@ -459,10 +464,14 @@ function initProfile() {
   const wrap = document.getElementById('profile-wrap');
   if (!wrap) return;
 
-  const user = sessionStorage.getItem('sh_user');
-  if (!user) { window.location.href = 'login.html'; return; }
+  const user = localStorage.getItem('sh_user');
+  const logoutBtn = document.getElementById('logout-btn');
+  if (user) {
+    if (logoutBtn) logoutBtn.addEventListener('click', logout);
+  } else {
+    if (logoutBtn) logoutBtn.style.display = 'none';
+  }
 
-  document.getElementById('logout-btn').addEventListener('click', logout);
   document.getElementById('back-btn').addEventListener('click', () => {
     if (history.length > 1) history.back();
     else window.location.href = 'catalog.html';

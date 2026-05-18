@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudentHelper — Свайп</title>
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body class="swipe-page">
+
+  <header class="sh-header">
+    <div class="container">
+      <div class="sh-header__inner">
+        <a href="catalog.html" class="sh-logo">
+          <div class="sh-logo__icon">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+          </div>
+          StudentHelper
+        </a>
+        <div class="sh-header__right">
+          <span class="sh-header__user" id="header-user"></span>
+          <button class="btn btn--outline" onclick="logout()">Выход</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="sh-page-nav">
+    <div class="container">
+      <div class="sh-page-nav__inner">
+        <a href="catalog.html" class="sh-page-nav__btn">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+          </svg>
+          Список студентов
+        </a>
+        <button class="sh-page-nav__btn sh-page-nav__btn--active" disabled>
+          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+          Свайп анкет
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="swipe-main">
+    <div class="swipe-container">
+
+      <div class="swipe-topbar">
+        <div class="swipe-progress-wrap">
+          <span class="swipe-progress-text" id="swipeProgressText">1 из 20</span>
+          <div class="swipe-progress-bar">
+            <div class="swipe-progress-fill" id="swipeProgressFill"></div>
+          </div>
+        </div>
+        <div class="swipe-liked-count">
+          <svg width="14" height="14" fill="var(--emerald)" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+          <span id="swipeLikedNum">0</span>
+        </div>
+      </div>
+
+      <div class="swipe-arena" id="swipeArena"></div>
+
+      <div class="swipe-actions">
+        <button class="swipe-btn swipe-btn--nope" id="btnNope" onclick="doSwipe('nope')" title="Дизлайк ← ">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+        </button>
+        <button class="swipe-btn swipe-btn--like" id="btnLike" onclick="doSwipe('like')" title="Лайк →">
+          <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </button>
+      </div>
+
+      <p class="swipe-hint">← дизлайк &nbsp;·&nbsp; лайк → &nbsp;&nbsp;|&nbsp;&nbsp; стрелки на клавиатуре</p>
+
+    </div>
+  </main>
+
+  <div class="swipe-shelf" id="swipeShelf">
+    <div class="swipe-shelf__inner">
+      <span class="swipe-shelf__label">Понравились</span>
+      <div class="swipe-shelf__list" id="swipeShelfList">
+        <span class="swipe-shelf__empty">пока никого</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="swipe-done" id="swipeDone" hidden>
+    <div class="swipe-done__modal">
+      <div class="swipe-done__emoji">🎉</div>
+      <h2 class="swipe-done__title">Все анкеты просмотрены!</h2>
+      <p class="swipe-done__sub">Понравилось студентов: <strong id="swipeDoneCount">0</strong></p>
+      <div class="swipe-done__liked" id="swipeDoneLiked"></div>
+      <div class="swipe-done__actions">
+        <button class="btn btn--primary" onclick="resetSwipe()">Начать заново</button>
+        <a href="catalog.html" class="btn btn--outline">К каталогу</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    /* ── SWIPE STATE ── */
+    let swipeIdx = 0;
+    let liked    = [];
+    let busy     = false;
+    let pool     = []; // {sIdx, el, exiting}
+    let drag     = null;
+
+    const BADGE_CLS = {
+      1:'badge--blue', 2:'badge--blue', 3:'badge--green',
+      4:'badge--amber', 5:'badge--amber', grad:'badge--red'
+    };
+
+    /* ── POSITION HELPER ── */
+    function cardPos(offset) {
+      if (offset === -1) return 'prev';
+      if (offset ===  0) return 'active';
+      if (offset ===  1) return 'next';
+      if (offset >=   2) return 'far-next';
+      return 'gone';
+    }
+
+    /* ── BUILD CARD DOM ── */
+    function buildCard(s) {
+      const c  = AVATAR_PALETTE[(s.id - 1) % AVATAR_PALETTE.length];
+      const el = document.createElement('div');
+      el.className   = 'swipe-card';
+      el.dataset.sid = s.id;
+      el.style.setProperty('--card-bg', c.bg);
+      el.style.setProperty('--card-icon', c.icon);
+      el.innerHTML = `
+        <div class="swipe-stamp swipe-stamp--like">ЛАЙК ❤</div>
+        <div class="swipe-stamp swipe-stamp--nope">ПРОПУСК</div>
+        <div class="swipe-card__glow"></div>
+        <div class="swipe-card__top">
+          ${avatarHtml(s.id, 'swipe-card__avatar')}
+        </div>
+        <div class="swipe-card__body">
+          <div class="swipe-card__row">
+            <span class="swipe-card__name">${s.name}</span>
+            <span class="badge ${BADGE_CLS[s.year] || 'badge--blue'}">${yearLabel(s.year)}</span>
+          </div>
+          <p class="swipe-card__meta">${s.group}&nbsp;·&nbsp;${s.direction}</p>
+          <p class="swipe-card__bio">${s.bio}</p>
+          <div class="swipe-card__tags">
+            ${s.subjects.slice(0, 3).map(t => `<span class="swipe-tag">${t}</span>`).join('')}
+            ${s.subjects.length > 3 ? `<span class="swipe-tag swipe-tag--more">+${s.subjects.length - 3}</span>` : ''}
+          </div>
+          <a href="profile.html?id=${s.id}" class="swipe-card__link" onclick="event.stopPropagation()">Подробнее →</a>
+        </div>`;
+      return el;
+    }
+
+    /* ── REFRESH ALL POSITIONS ── */
+    function refreshPositions() {
+      pool.forEach(p => {
+        if (p.exiting) return;
+        p.el.dataset.pos = cardPos(p.sIdx - swipeIdx);
+      });
+    }
+
+    /* ── SWIPE ACTION ── */
+    function doSwipe(action) {
+      if (busy || swipeIdx >= STUDENTS.length) return;
+      busy = true;
+
+      const active = pool.find(p => p.sIdx === swipeIdx && !p.exiting);
+      if (!active) { busy = false; return; }
+
+      /* Stamp + glow */
+      active.el.classList.add(action === 'like' ? 'is-liking' : 'is-noping');
+
+      if (action === 'like') {
+        liked.push(STUDENTS[swipeIdx]);
+        addToShelf(STUDENTS[swipeIdx]);
+      }
+
+      /* Button pulse */
+      const btn = document.getElementById(action === 'like' ? 'btnLike' : 'btnNope');
+      btn.classList.add('pulse');
+      setTimeout(() => btn.classList.remove('pulse'), 320);
+
+      /* Short flash delay, then animate out */
+      setTimeout(() => {
+        active.exiting = true;
+        active.el.dataset.pos = action === 'like' ? 'exit-right' : 'exit-left';
+
+        swipeIdx++;
+        refreshPositions();
+
+        /* Inject new far-next card if available and not already in pool */
+        const ni = swipeIdx + 2;
+        if (ni < STUDENTS.length && !pool.find(p => p.sIdx === ni)) {
+          const el = buildCard(STUDENTS[ni]);
+          el.dataset.pos = 'far-next';
+          document.getElementById('swipeArena').appendChild(el);
+          pool.push({ sIdx: ni, el, exiting: false });
+        }
+
+        updateProgress();
+
+        /* After exit animation finishes, clean up */
+        setTimeout(() => {
+          active.el.remove();
+          pool = pool.filter(p => p !== active);
+          /* Remove any cards too far back */
+          pool.filter(p => !p.exiting && p.sIdx - swipeIdx < -1)
+              .forEach(p => p.el.remove());
+          pool = pool.filter(p => p.exiting || p.sIdx - swipeIdx >= -1);
+
+          busy = false;
+          if (swipeIdx >= STUDENTS.length) showDone();
+        }, 480);
+
+      }, 120);
+    }
+
+    /* ── PROGRESS ── */
+    function updateProgress() {
+      const total = STUDENTS.length;
+      const shown = Math.min(swipeIdx + 1, total);
+      document.getElementById('swipeProgressText').textContent =
+        `${swipeIdx >= total ? total : shown} из ${total}`;
+      document.getElementById('swipeProgressFill').style.width =
+        `${(Math.min(swipeIdx, total) / total) * 100}%`;
+      document.getElementById('swipeLikedNum').textContent = liked.length;
+    }
+
+    /* ── SHELF (liked bar) ── */
+    function addToShelf(s) {
+      const list  = document.getElementById('swipeShelfList');
+      const empty = list.querySelector('.swipe-shelf__empty');
+      if (empty) empty.remove();
+
+      const chip = document.createElement('a');
+      chip.href      = `profile.html?id=${s.id}`;
+      chip.className = 'swipe-shelf__chip';
+      chip.title     = s.name;
+      chip.innerHTML = avatarHtml(s.id, 'swipe-shelf__avatar');
+      chip.style.animation = 'popIn .32s cubic-bezier(.34,1.56,.64,1) both';
+      list.appendChild(chip);
+    }
+
+    /* ── DONE SCREEN ── */
+    function showDone() {
+      document.getElementById('swipeDoneCount').textContent = liked.length;
+      const list = document.getElementById('swipeDoneLiked');
+      list.innerHTML = liked.length
+        ? liked.map(s => `
+            <a href="profile.html?id=${s.id}" class="swipe-done__chip">
+              ${avatarHtml(s.id, 'swipe-done__chip-av')}
+              <span>${s.name.split(' ')[0]}</span>
+            </a>`).join('')
+        : '<p class="swipe-done__nobody">Никто не понравился 😔</p>';
+
+      const overlay = document.getElementById('swipeDone');
+      overlay.hidden = false;
+    }
+
+    /* ── RESET ── */
+    function resetSwipe() {
+      swipeIdx = 0;
+      liked    = [];
+      busy     = false;
+      pool.forEach(p => p.el.remove());
+      pool = [];
+
+      const arena = document.getElementById('swipeArena');
+      arena.innerHTML = '';
+      for (let i = 0; i < Math.min(3, STUDENTS.length); i++) {
+        const el = buildCard(STUDENTS[i]);
+        el.dataset.pos = cardPos(i);
+        arena.appendChild(el);
+        pool.push({ sIdx: i, el, exiting: false });
+      }
+
+      document.getElementById('swipeShelfList').innerHTML =
+        '<span class="swipe-shelf__empty">пока никого</span>';
+      document.getElementById('swipeDone').hidden = true;
+      updateProgress();
+    }
+
+    /* ── KEYBOARD ── */
+    function setupKeys() {
+      document.addEventListener('keydown', e => {
+        if (document.getElementById('swipeDone') && !document.getElementById('swipeDone').hidden) return;
+        if (e.key === 'ArrowLeft')  doSwipe('nope');
+        if (e.key === 'ArrowRight') doSwipe('like');
+      });
+    }
+
+    /* ── DRAG / TOUCH ── */
+    function setupDrag() {
+      const arena = document.getElementById('swipeArena');
+      const onStart = (x, target) => {
+        if (busy) return;
+        const card = target.closest && target.closest('.swipe-card[data-pos="active"]');
+        if (!card) return;
+        drag = { startX: x, card, moved: 0 };
+      };
+      const onMove = x => {
+        if (!drag) return;
+        drag.moved = x - drag.startX;
+        const rot = drag.moved * 0.065;
+        drag.card.style.transform  = `translateX(calc(-50% + ${drag.moved}px)) rotate(${rot}deg) scale(1)`;
+        drag.card.style.transition = 'none';
+        drag.card.classList.toggle('is-liking', drag.moved > 45);
+        drag.card.classList.toggle('is-noping', drag.moved < -45);
+      };
+      const onEnd = () => {
+        if (!drag) return;
+        const { moved, card } = drag;
+        drag = null;
+        card.style.transform  = '';
+        card.style.transition = '';
+        card.classList.remove('is-liking', 'is-noping');
+        if (Math.abs(moved) > 95) doSwipe(moved > 0 ? 'like' : 'nope');
+      };
+
+      arena.addEventListener('mousedown',  e => onStart(e.clientX, e.target));
+      arena.addEventListener('touchstart', e => onStart(e.touches[0].clientX, e.target), { passive: true });
+      document.addEventListener('mousemove',  e => onMove(e.clientX));
+      document.addEventListener('touchmove',  e => onMove(e.touches[0].clientX), { passive: true });
+      document.addEventListener('mouseup',  onEnd);
+      document.addEventListener('touchend', onEnd);
+    }
+
+    /* ── INIT ── */
+    function init() {
+      const user = localStorage.getItem('sh_user');
+      const headerUser = document.getElementById('header-user');
+      const logoutBtn  = document.querySelector('.sh-header .btn--outline');
+      if (user) {
+        if (headerUser) headerUser.textContent = user;
+      } else {
+        if (headerUser) headerUser.innerHTML = '<a href="login.html" style="color:var(--signal-blue);text-decoration:none;font-size:13px">Войти</a>';
+        if (logoutBtn)  logoutBtn.style.display = 'none';
+      }
+
+      const arena = document.getElementById('swipeArena');
+      for (let i = 0; i < Math.min(3, STUDENTS.length); i++) {
+        const el = buildCard(STUDENTS[i]);
+        el.dataset.pos = cardPos(i);
+        arena.appendChild(el);
+        pool.push({ sIdx: i, el, exiting: false });
+      }
+
+      updateProgress();
+      setupKeys();
+      setupDrag();
+    }
+
+    init();
+  </script>
+</body>
+</html>
