@@ -1498,6 +1498,26 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 8px;
 }
 
+.land-hero__authors {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--canvas);
+  border: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--slate);
+  letter-spacing: var(--tracking-caption);
+  box-shadow: var(--shadow-card);
+}
+.land-hero__authors svg {
+  color: var(--signal-blue);
+  flex-shrink: 0;
+}
+
 .land-hero__stats {
   display: flex;
   align-items: center;
